@@ -1,0 +1,92 @@
+:root {
+  --ink: #1f2421;
+  --ink-soft: #5d6662;
+  --line: #dde2df;
+  --panel: #ffffff;
+  --ground: #f3f5f3;
+  --ember: #e4572e;          /* 불씨 — 내 위치·선택 */
+  --ember-ink: #ffffff;
+  --closed: #3d5a80;         /* 폐쇄형: 벽으로 막힌 부스 */
+  --partial: #d6912e;        /* 부분 개방형 */
+  --open: #4f8a5b;           /* 완전 개방형 */
+  --indoor: #8a7fa8;         /* 건물 안 흡연실 */
+  --focus: #1f6fd1;
+  --font: "Gothic A1", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root { --ink: #e9eeeb; --ink-soft: #a3aea9; --line: #343c39; --panel: #1c2120; --ground: #141817; --focus: #7fb2ff; color-scheme: dark; }
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; margin: 0; }
+body { font-family: var(--font); color: var(--ink); background: var(--ground); font-size: 15px; line-height: 1.5; }
+button { font: inherit; color: inherit; }
+button:focus-visible, a:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+
+/* 휴대폰: 지도 전체 + 아래 패널 / PC: 왼쪽 패널 + 지도 */
+.app { height: 100%; display: grid; grid-template-rows: 1fr auto; }
+.map-wrap { position: relative; grid-row: 1; min-height: 0; }
+#map { position: absolute; inset: 0; background: #dfe5e2; }
+.sheet { grid-row: 2; background: var(--panel); border-top: 1px solid var(--line); box-shadow: 0 -8px 24px rgba(0,0,0,.08);
+  padding: 12px 16px calc(12px + env(safe-area-inset-bottom, 0px)); display: grid; gap: 10px; max-height: 48vh; overflow: auto; }
+@media (min-width: 860px) {
+  .app { grid-template-columns: 380px 1fr; grid-template-rows: 1fr; }
+  .map-wrap { grid-column: 2; grid-row: 1; }
+  .sheet { grid-column: 1; grid-row: 1; max-height: none; border-top: 0; border-right: 1px solid var(--line); box-shadow: none; padding: 18px 18px; align-content: start; }
+}
+
+.brand { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
+.brand h1 { margin: 0; font-size: 19px; font-weight: 800; letter-spacing: -.01em; }
+.link { background: none; border: 0; padding: 2px; color: var(--ink-soft); text-decoration: underline; cursor: pointer; font-size: 13px; }
+
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { display: inline-flex; align-items: center; gap: 6px; padding: 5px 10px; border-radius: 999px; border: 1px solid var(--line);
+  background: var(--ground); cursor: pointer; font-size: 13px; font-weight: 600; }
+.chip .sw { width: 10px; height: 10px; border-radius: 50%; background: var(--c); }
+.chip[aria-pressed="false"] { opacity: .55; }
+.chip[aria-pressed="false"] .sw { background: transparent; box-shadow: inset 0 0 0 2px var(--c); }
+.chip .n { font-weight: 400; color: var(--ink-soft); font-variant-numeric: tabular-nums; }
+
+.panel { display: grid; gap: 10px; }
+.panel h2 { margin: 0; font-size: 16px; font-weight: 800; }
+.muted { color: var(--ink-soft); margin: 0; font-size: 13px; }
+.small { font-size: 12px; color: var(--ink-soft); }
+.primary { background: var(--ember); color: var(--ember-ink); border: 0; border-radius: 10px; padding: 10px 14px; font-weight: 800; cursor: pointer; text-align: center; text-decoration: none; display: inline-block; }
+.secondary { background: var(--ground); border: 1px solid var(--line); border-radius: 10px; padding: 9px 12px; font-weight: 600; cursor: pointer; }
+.row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+
+.list { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.list button { width: 100%; text-align: left; display: grid; grid-template-columns: auto 1fr auto; gap: 10px; align-items: center;
+  background: var(--ground); border: 1px solid var(--line); border-radius: 10px; padding: 9px 11px; cursor: pointer; }
+.list .rank { font-weight: 800; color: var(--ember); font-variant-numeric: tabular-nums; }
+.list .name { font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.list .sub { display: block; font-size: 12px; color: var(--ink-soft); font-weight: 400; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.list .dist { font-variant-numeric: tabular-nums; font-weight: 800; white-space: nowrap; }
+.list .dist small { display: block; font-weight: 400; font-size: 11px; color: var(--ink-soft); text-align: right; }
+
+.kind { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; font-weight: 600; padding: 2px 8px; border-radius: 999px; background: color-mix(in srgb, var(--c) 18%, transparent); }
+.kind::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--c); }
+.note { background: color-mix(in srgb, var(--partial) 14%, transparent); border-radius: 8px; padding: 6px 9px; font-size: 13px; margin: 0; }
+
+/* 지도 위 버튼 */
+.locate { position: absolute; right: 12px; bottom: 16px; z-index: 500; display: inline-flex; align-items: center; gap: 8px;
+  background: var(--ember); color: var(--ember-ink); border: 0; border-radius: 999px; padding: 11px 16px; font-weight: 800;
+  box-shadow: 0 4px 14px rgba(0,0,0,.25); cursor: pointer; }
+.locate .dot { width: 10px; height: 10px; border-radius: 50%; background: currentColor; box-shadow: 0 0 0 3px rgba(255,255,255,.4); }
+.locate:disabled { opacity: .7; cursor: wait; }
+
+/* 지도 마커 */
+.pin { width: 18px; height: 18px; border-radius: 50%; background: var(--c); border: 2.5px solid #fff; box-shadow: 0 1px 4px rgba(0,0,0,.4); }
+.pin.approx { border-style: dashed; }
+.pin.selected { width: 24px; height: 24px; border-color: var(--ember); border-width: 4px; }
+.me { width: 16px; height: 16px; border-radius: 50%; background: #1f6fd1; border: 3px solid #fff; box-shadow: 0 0 0 6px rgba(31,111,209,.25); }
+.marker-cluster div { background: var(--ink) !important; color: #fff; font-family: var(--font); font-weight: 800; }
+.marker-cluster { background: rgba(31,36,33,.25) !important; }
+
+dialog.about { border: 0; border-radius: 16px; padding: 20px; max-width: min(520px, calc(100% - 32px)); background: var(--panel); color: var(--ink); }
+dialog.about::backdrop { background: rgba(0,0,0,.45); }
+dialog.about h2 { margin: 0 0 8px; font-size: 18px; }
+dialog.about ul { padding-left: 18px; margin: 8px 0; font-size: 13px; }
+dialog.about a { color: inherit; }
+
+@media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; } }

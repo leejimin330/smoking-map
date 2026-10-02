@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>서울 흡연구역 지도</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='13' fill='%23e4572e'/%3E%3Ccircle cx='16' cy='16' r='5' fill='white'/%3E%3C/svg%3E">
+  <meta name="description" content="내 위치에서 가장 가까운 서울 공공 흡연구역과 길찾기">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@400;600;800&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/MarkerCluster.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app">
+    <aside class="sheet" id="sheet" aria-label="흡연구역 찾기">
+      <header class="brand">
+        <h1>서울 흡연구역 지도</h1>
+        <button class="link" id="about-open" type="button">자료 출처</button>
+      </header>
+
+      <div class="chips" id="chips" role="group" aria-label="시설 형태"></div>
+
+      <section class="panel" id="panel" aria-live="polite"></section>
+    </aside>
+
+    <main class="map-wrap">
+      <div id="map" aria-label="흡연구역 지도"></div>
+      <button class="locate" id="locate" type="button" aria-label="내 위치에서 가까운 흡연구역 찾기">
+        <span class="dot" aria-hidden="true"></span> 내 주변
+      </button>
+    </main>
+  </div>
+
+  <dialog class="about" id="about" aria-labelledby="about-title">
+    <h2 id="about-title">자료 출처와 안내</h2>
+    <p>서울시와 각 구가 공개한 <b>공공 흡연시설</b> 자료를 모았습니다. 민간이 만든 흡연구역은 들어 있지 않고, 실제와 다를 수 있습니다.
+      위치는 주소로 찾았기 때문에 일부는 대략적인 위치입니다.</p>
+    <ul id="source-list"></ul>
+    <p class="small" id="generated"></p>
+    <p class="small">공공누리 제1유형(출처표시). 지도 © OpenStreetMap 기여자.</p>
+    <button class="primary" id="about-close" type="button">닫기</button>
+  </dialog>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/leaflet.markercluster.min.js"></script>
+  <script type="module" src="app.js"></script>
+</body>
+</html>

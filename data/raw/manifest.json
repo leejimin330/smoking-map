@@ -1,0 +1,68 @@
+{
+ "seocho": {
+  "pk": "15074379",
+  "title": "서울특별시 서초구_흡연시설 현황_20260318",
+  "file": "seocho.csv",
+  "bytes": 6119
+ },
+ "gwanak": {
+  "pk": "15040591",
+  "title": "서울특별시 관악구_흡연시설현황_20260915",
+  "file": "gwanak.csv",
+  "bytes": 894
+ },
+ "yangcheon": {
+  "pk": "15040511",
+  "title": "서울특별시_양천구_흡연시설 현황_20260828",
+  "file": "yangcheon.csv",
+  "bytes": 1637
+ },
+ "jungnang": {
+  "pk": "15040636",
+  "title": "서울특별시_중랑구_흡연시설_20260212",
+  "file": "jungnang.csv",
+  "bytes": 16778
+ },
+ "jongno": {
+  "pk": "15142571",
+  "title": "서울특별시 종로구_흡연부스현황_20260520",
+  "file": "jongno.csv",
+  "bytes": 174
+ },
+ "songpa": {
+  "pk": "15090343",
+  "title": "서울특별시 송파구_실외흡연구역 위치_20260831",
+  "file": "songpa.csv",
+  "bytes": 3611
+ },
+ "yongsan": {
+  "pk": "15073796",
+  "title": "서울특별시 용산구_흡연구역_20260917",
+  "file": "yongsan.csv",
+  "bytes": 8410
+ },
+ "yeongdeungpo": {
+  "pk": "15069051",
+  "title": "서울특별시 영등포구_흡연구역(실외) 현황_20231212",
+  "file": "yeongdeungpo.csv",
+  "bytes": 6003
+ },
+ "junggu": {
+  "pk": "15080296",
+  "title": "서울특별시 중구_흡연구역정보_20230331",
+  "file": "junggu.csv",
+  "bytes": 733
+ },
+ "seodaemun": {
+  "pk": "15040413",
+  "title": "서울특별시_서대문구_흡연시설 현황_20210607",
+  "file": "seodaemun.csv",
+  "bytes": 3953
+ },
+ "gangseo": {
+  "pk": "15037912",
+  "title": "서울특별시 강서구_흡연정보_20190812",
+  "file": "gangseo.csv",
+  "bytes": 96
+ }
+}
